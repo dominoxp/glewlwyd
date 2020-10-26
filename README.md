@@ -1,5 +1,7 @@
 # Glewlwyd SSO server
 
+Fork of  babelouest / glewlwyd to support MYSQL 8.0 Server
+
 [![Build Status](https://travis-ci.com/babelouest/glewlwyd.svg?branch=master)](https://travis-ci.com/babelouest/glewlwyd)
 ![C/C++ CI](https://github.com/babelouest/glewlwyd/workflows/C/C++%20CI/badge.svg)
 ![CodeQL](https://github.com/babelouest/glewlwyd/workflows/CodeQL/badge.svg)

@@ -361,7 +361,7 @@ static char * get_password_clause_write(struct mod_parameters * param, const cha
   } else if (param->conn->type == HOEL_DB_TYPE_MARIADB) {
     password_encoded = h_escape_string_with_quotes(param->conn, password);
     if (password_encoded != NULL) {
-      clause = msprintf("PASSWORD(%s)", password_encoded);
+      clause = msprintf("CONCAT('*', UPPER(SHA1(UNHEX(SHA1(%s)))))", password_encoded);
       o_free(password_encoded);
     } else {
       y_log_message(Y_LOG_LEVEL_ERROR, "get_password_clause_write database - Error h_escape_string_with_quotes (mariadb)");
@@ -438,7 +438,7 @@ static char * get_password_clause_check(struct mod_parameters * param, const cha
   } else if (param->conn->type == HOEL_DB_TYPE_MARIADB) {
     password_encoded = h_escape_string_with_quotes(param->conn, password);
     if (password_encoded != NULL) {
-      clause = msprintf(" = PASSWORD(%s)", password_encoded);
+      clause = msprintf(" = CONCAT('*', UPPER(SHA1(UNHEX(SHA1(%s)))))", password_encoded);
       o_free(password_encoded);
     } else {
       y_log_message(Y_LOG_LEVEL_ERROR, "get_password_clause_write database - Error h_escape_string_with_quotes (mariadb)");
